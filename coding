@@ -1,0 +1,89 @@
+#include<Servo.h>
+Servo s1;
+
+char t;
+
+void setup() {
+  s1.attach(12);
+  Serial.begin(9600);
+  pinMode(4,OUTPUT);
+  pinMode(5,OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(7,OUTPUT);
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(11,OUTPUT);
+}
+
+void loop() {
+  {
+
+  s1.write(0);
+  delay(1000);
+  s1.write(180);
+  delay(1000);
+  }
+  
+
+  if (Serial.available()){ 
+    t=Serial.read();
+    Serial.print(t);
+  }
+
+  
+
+  if(t == 'F'){
+    Serial.println("for");
+    digitalWrite(4,HIGH);
+    digitalWrite(5,LOW);
+    digitalWrite(6,HIGH);
+    digitalWrite(7,LOW);
+  }
+  else if (t == 'B'){
+    Serial.println("back");
+    digitalWrite(4,LOW);
+    digitalWrite(5,HIGH);
+    digitalWrite(6,LOW);
+    digitalWrite(7,HIGH);
+  }
+
+  else if(t == 'L'){
+    Serial.println("left");
+    digitalWrite(4,HIGH);
+    digitalWrite(5,LOW);
+    digitalWrite(6,LOW);
+    digitalWrite(7,HIGH);
+  }
+  else if(t == 'R'){
+    Serial.println("right");
+
+    digitalWrite(4,LOW);
+    digitalWrite(5,HIGH);
+    digitalWrite(6,HIGH);
+    digitalWrite(7,LOW);
+  }
+  else if(t=='S'){
+    
+    digitalWrite(4,LOW);
+    digitalWrite(5,LOW);
+    digitalWrite(6,LOW);
+    digitalWrite(7,LOW);
+ }
+else if(t=='q'){
+  
+    Serial.println("SPRAY");
+    digitalWrite(8,HIGH);
+    digitalWrite(9,LOW);
+    digitalWrite(10,LOW);
+    digitalWrite(11,HIGH);
+}
+else if(t=='r'){
+    Serial.println("SEED SOWING");
+    digitalWrite(8,LOW);
+    digitalWrite(9,LOW);
+    digitalWrite(10,LOW);
+    digitalWrite(11,HIGH);
+
+}
+}
